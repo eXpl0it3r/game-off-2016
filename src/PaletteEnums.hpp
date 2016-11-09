@@ -41,7 +41,7 @@ namespace selbaward
 	{
 		namespace Default
 		{
-
+	
 enum Colors
 {
 	Black = 0,
@@ -451,7 +451,7 @@ enum Colors
 };
 
 		} // namespace Colors216Web
-
+	
 	} // namespace Palette
 } // namespace selbaward
 #endif // SELBAWARD_PALETTEENUMS_HPP

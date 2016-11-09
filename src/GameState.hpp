@@ -1,6 +1,7 @@
 #pragma once
 
 #include "State.hpp"
+#include "Console.hpp"
 #include "ConsoleScreen.hpp"
 
 #include <SFGUI/SFGUI.hpp>
@@ -26,11 +27,9 @@ private:
 private:
     sfg::SFGUI& m_sfgui;
     sfg::Desktop m_desktop;
-    sfg::Window::Ptr m_console;
-    sfg::Canvas::Ptr m_canvas;
 
     thor::ResourceHolder<sf::Texture, std::string> m_textures;
     thor::ResourceHolder<sf::Font, std::string> m_fonts;
 
-    sw::ConsoleScreen m_screen;
+    Console m_console;
 };
