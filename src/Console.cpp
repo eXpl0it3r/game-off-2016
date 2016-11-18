@@ -6,6 +6,7 @@
 
 #include <cmath>
 #include <iostream>
+
 Console::Console()
 : m_mode{16, 9}
 , m_tile_size{8, 12}
@@ -18,12 +19,10 @@ Console::Console()
     m_screen.setSize({ 128.f, 128.f });
     m_screen.setUseCursorColor(true);
     m_screen.setCursorColor(sw::Palette::Default::Green);
-    //m_screen.crash();
     m_screen << sw::ConsoleScreen::ColorPair(sw::Palette::Default::Green, sw::Palette::Default::Black);
-    m_screen << "SFML> ";
 
     m_console->Add(m_canvas);
-    m_console->SetTitle("Console");
+    m_console->SetTitle("Sombra Console");
 
     m_canvas->SetRequisition(m_screen.getSize());
     m_console->GetSignal(sfg::Window::OnSizeAllocate).Connect(std::bind(&Console::on_resize, this));
@@ -104,11 +103,12 @@ void Console::on_resize()
 {
     auto rect = m_console->GetClientRect();
     auto window_size = sf::Vector2f{rect.width, rect.height};
-    auto mode = sf::Vector2u{std::floor(window_size.x / m_tile_size.x), std::floor(window_size.y / m_tile_size.y)};
+    auto mode = sf::Vector2u{static_cast<unsigned int>(std::floor(window_size.x / m_tile_size.x + 0.5f)),
+                             static_cast<unsigned int>(std::floor(window_size.y / m_tile_size.y + 0.5f))};
 
     m_screen.setMode(mode);
     m_mode = mode;
-    m_screen.setSize({mode.x * m_tile_size.x, mode.y * m_tile_size.y});
+    m_screen.setSize({static_cast<float>(mode.x * m_tile_size.x), static_cast<float>(mode.y * m_tile_size.y)});
     m_canvas->SetAllocation({0.f, 0.f, window_size.x, window_size.y});
 
     print();

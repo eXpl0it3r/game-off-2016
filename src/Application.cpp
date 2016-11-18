@@ -14,7 +14,7 @@ Application::Application()
 void Application::run()
 {
     // Simple state machine
-    std::unique_ptr<State> state(new GameState(m_window, m_sfgui));
+    std::unique_ptr<State> state = std::make_unique<GameState>(m_window, m_sfgui);
 
     while(state != nullptr)
     {

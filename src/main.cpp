@@ -15,4 +15,3 @@ int main()
         std::cerr << "Due to this error the SmallGameFramework unfortunately needs to terminate." << std::endl;
     }
 }
-
